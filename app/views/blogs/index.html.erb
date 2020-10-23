@@ -1,0 +1,22 @@
+<h1>ブログ一覧表</h1>
+
+<table>
+    <tr>
+        <th>No</th>
+        <th>タイトル</th>
+        <th>コンテンツ</th>
+    </tr>
+
+    <% @blogs.each do |blog| %>
+     <tr>
+        <td><%= blog.id %><td>
+        <td><%= link_to blog.title, blog_path(:id => blog.id) %></td>
+        <td><%= blog.content %></td>
+        <td><%= link_to "編集", edit_blog_path(:id => blog.id) %></td>
+        <td><%= link_to "削除", blog_path(:id => blog.id), method: :delete, data: {confirm: "この記事を削除しますか？"} %></td>
+     </tr>
+    <% end %>
+</table>
+<div>
+    <%= link_to "新規投稿画面", new_blog_path %>
+</div>
