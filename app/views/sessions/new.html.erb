@@ -1,5 +1,7 @@
 <h1>ログイン</h1>
-
+<% if flash[:danger] %>
+  <p><%= flash[:danger] %></p>
+<% end %>
   <%= form_for(:session, url: login_path) do |f| %>
     <p>
       <%= f.label :email,"メールアドレス" %>
@@ -9,11 +11,6 @@
       <%= f.label :password,"パスワード" %>
       <%= f.password_field :password %>
     </p>
-
-    <%= f.label :remember_me, class: "checkbox inline" do %>
-      <%= f.check_box :remember_me %>
-       <span>ログイン状態を保存する場合はチェックをしてください。</span>
-     <% end %>
      
     <%= f.submit "ログイン" %>
-   <% end %>
+  <% end %>
