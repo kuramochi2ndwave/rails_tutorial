@@ -3,10 +3,6 @@
 <p>タイトル：<%= @blog.title %></p>
 <p>コンテンツ：<%= @blog.content %></p>
 
-<div>
-    <%= link_to "戻る", blogs_path %>
-</div>
-
 <div class="comment-wrapper border-top mb-10">
  <p class="mt-5">コメント一覧</p>
   <% if logged_in? %>
@@ -35,3 +31,6 @@
   <% end %>
 </div>
 
+<div>
+    <%= link_to "戻る", blogs_path %>
+</div>

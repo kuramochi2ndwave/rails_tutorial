@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email:params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      flash[:success] = "ログインに成功しました"
-      log_in(user)
+      log_in user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
       flash[:danger] = "ログインに失敗しました"
-      render "new"
+      render 'new'
     end
   end
 

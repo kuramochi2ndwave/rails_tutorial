@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   def index
-     @blogs = Blog.all.order(created_at: "DESC")
+    @blogs = Blog.all.order(created_at: "DESC")
   end
 
   def new
@@ -14,18 +14,18 @@ class BlogsController < ApplicationController
     flash[:success] = "記事の登録に成功しました"
    else
     flash[:danger] = "記事の登録に失敗しました"
-    render :new
+    render 'new'
    end
   end
 
   def show
-      @blog = Blog.find(params[:id])
-      @comments = @blog.comments
-      @comment = @blog.comments.build
+    @blog = Blog.find(params[:id])
+    @comments = @blog.comments
+    @comment = @blog.comments.build
   end
 
   def edit
-      @blog = Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
   def update
@@ -40,9 +40,9 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-  Blog.find(params[:id]).destroy
-   flash[:success] = "記事を削除しました"
-   redirect_to blogs_path
+    Blog.find(params[:id]).destroy
+    flash[:success] = "記事を削除しました"
+    redirect_to blogs_path
   end
 
   private

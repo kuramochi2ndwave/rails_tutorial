@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-　before_action :authenticate_user!
+before_action :authenticate_user!
 
   def create
     blog = Blog.find(params[:blog_id])
@@ -12,10 +12,17 @@ class CommentsController < ApplicationController
      flash[:danger] = "コメントを投稿できませんでした"
      redirect_back(fallback_location: root_path)
     end
-　end
-end
- private
+  end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @blog = Blog.find(@comment.blog_id)
+    @comment.destroy
+    flash[:success] = "コメントを削除しました"
+    redirect_back(fallback_location: root_path)
+  end
+
+ private
   def comment_params
     params.require(:comment).permit(:content)
   end
