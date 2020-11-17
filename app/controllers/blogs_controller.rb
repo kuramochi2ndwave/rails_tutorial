@@ -10,18 +10,18 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
    if @blog.save
-    redirect_to action: :show, id: @blog.id
     flash[:success] = "記事の登録に成功しました"
+    redirect_to action: :show, id: @blog.id
    else
     flash[:danger] = "記事の登録に失敗しました"
-    render 'new'
+    render :new
    end
   end
 
   def show
     @blog = Blog.find(params[:id])
-    @comments = @blog.comments
-    @comment = @blog.comments.build
+    @comments = Comment.where(blog_id: params[:id])
+    @comment = @comments.build
   end
 
   def edit

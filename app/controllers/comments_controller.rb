@@ -15,9 +15,7 @@ before_action :authenticate_user!
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @blog = Blog.find(@comment.blog_id)
-    @comment.destroy
+    Comment.find(params[:comment_id]).destroy
     flash[:success] = "コメントを削除しました"
     redirect_back(fallback_location: root_path)
   end

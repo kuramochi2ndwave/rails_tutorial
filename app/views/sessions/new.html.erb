@@ -1,7 +1,6 @@
+<meta charset="UTF-8">
+<link rel="custom" href="/Users/2ndwave.kuramochi/projects/tutorials/rails_tutorial/app/assets/stylesheets/custom.scss">
 <h1>ログイン</h1>
-<% if flash[:danger] %>
-  <p><%= flash[:danger] %></p>
-<% end %>
 <%= form_for(:session, url: login_path) do |f| %>
   <p>
     <%= f.label :email,"メールアドレス" %>

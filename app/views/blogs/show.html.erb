@@ -4,30 +4,31 @@
 <p>コンテンツ：<%= @blog.content %></p>
 
 <div class="comment-wrapper border-top mb-10">
- <p class="mt-5">コメント一覧</p>
+  <p class="mt-5">コメント一覧</p>
   <% if logged_in? %>
-   <% @comments.each do |c| %>
-    <div>
-     <%= c.user.name unless c.user.blank? %>
-     <br>
-     <%= c.content %>
-    </div>
-    <br>
-   <% end %>
-   <%= form_with(model: [@blog, @comment], local: true) do |f| %>
-    <%= f.text_area :content, class: "form-control", rows: 5 %>
-    <%= button_tag type: "submit", class: "btn btn-success" do %>
-    　コメントする
+    <% @comments.each do |c| %>
+      <div>
+        <%= c.user.name unless c.user.blank? %>
+        <%= link_to "削除", blog_comment_path(:blog_id => c.blog_id, :comment_id => c.id), method: :delete %>
+        <br>
+        <%= c.content %>
+      </div>
+      <br>
     <% end %>
-   <% end %>
+    <%= form_with(model: [@blog, @comment], local: true) do |f| %>
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+      <%= button_tag type: "submit", class: "btn btn-success" do %>
+    　  コメントする
+      <% end %>
+    <% end %>
   <% else %>
-   <% @comments.each do |c| %>
-    <div>
-     <%= c.user.name unless c.user.blank? %>
-     <br>
-     <%= c.content %>
-    </div>
-   <% end %>
+    <% @comments.each do |c| %>
+      <div>
+      <%= c.user.name unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 

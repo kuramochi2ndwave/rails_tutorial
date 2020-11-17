@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
     validates :password, presence: true, length: { minimum: 6 }
     has_secure_password
-    
+    has_many :comments
     def authenticated?(remember_token)
         BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end
